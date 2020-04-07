@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 juin 2012 10:49:46 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="modele.Operation" table="operation" catalog="banque">
+        <id name="numop" type="java.lang.Integer">
+            <column name="numop" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="compte" class="modele.Compte" fetch="select">
+            <column name="codecpt" length="50" not-null="true" />
+        </many-to-one>
+        <property name="libop" type="string">
+            <column name="libop" length="100" not-null="true" />
+        </property>
+        <property name="sensop" type="string">
+            <column name="sensop" length="2" not-null="true" />
+        </property>
+        <property name="montantop" type="int">
+            <column name="montantop" not-null="true" />
+        </property>
+        <property name="dateop" type="timestamp">
+            <column name="dateop" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

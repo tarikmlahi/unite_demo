@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 juin 2012 10:49:46 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="modele.Agence" table="agence" catalog="banque">
+        <id name="codeag" type="java.lang.Integer">
+            <column name="codeag" />
+            <generator class="identity" />
+        </id>
+        <property name="nomag" type="string">
+            <column name="nomag" length="50" not-null="true" />
+        </property>
+        <property name="adresseag" type="string">
+            <column name="adresseag" length="100" not-null="true" />
+        </property>
+        <set name="clients" inverse="true" lazy="true" table="client" fetch="select">
+            <key>
+                <column name="codeag" not-null="true" />
+            </key>
+            <one-to-many class="modele.Client" />
+        </set>
+    </class>
+</hibernate-mapping>

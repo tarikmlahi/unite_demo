@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 juin 2012 10:49:46 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="modele.Client" table="client" catalog="banque">
+        <id name="codecli" type="java.lang.Integer">
+            <column name="codecli" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="agence" class="modele.Agence" fetch="select">
+            <column name="codeag" not-null="true" />
+        </many-to-one>
+        <property name="nomcli" type="string">
+            <column name="nomcli" length="25" not-null="true" />
+        </property>
+        <property name="prenomcli" type="string">
+            <column name="prenomcli" length="50" not-null="true" />
+        </property>
+        <property name="adressecli" type="string">
+            <column name="adressecli" length="100" not-null="true" />
+        </property>
+        <set name="comptes" inverse="true" lazy="true" table="compte" fetch="select">
+            <key>
+                <column name="codecli" not-null="true" />
+            </key>
+            <one-to-many class="modele.Compte" />
+        </set>
+    </class>
+</hibernate-mapping>

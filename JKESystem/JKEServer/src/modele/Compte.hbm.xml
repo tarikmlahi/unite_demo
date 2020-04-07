@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 juin 2012 10:49:46 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="modele.Compte" table="compte" catalog="banque">
+        <id name="codecpt" type="string">
+            <column name="codecpt" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="client" class="modele.Client" fetch="select">
+            <column name="codecli" not-null="true" />
+        </many-to-one>
+        <property name="libcpt" type="string">
+            <column name="libcpt" length="100" not-null="true" />
+        </property>
+        <property name="senscpt" type="string">
+            <column name="senscpt" length="2" not-null="true" />
+        </property>
+        <property name="soldcpt" type="int">
+            <column name="soldcpt" not-null="true" />
+        </property>
+        <set name="operations" inverse="true" lazy="true" table="operation" fetch="select">
+            <key>
+                <column name="codecpt" length="50" not-null="true" />
+            </key>
+            <one-to-many class="modele.Operation" />
+        </set>
+    </class>
+</hibernate-mapping>
