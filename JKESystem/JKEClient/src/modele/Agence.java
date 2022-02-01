@@ -1,7 +1,7 @@
 package modele;
 
 // Generated 2 juin 2012 10:49:45 by Hibernate Tools 3.2.4.GA
-//V1 branch update
+//Master branch update !
 
 //V2
 import java.util.HashSet;
